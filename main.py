@@ -1,21 +1,14 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-from google.appengine.ext import webapp
-from google.appengine.ext.webapp.util import run_wsgi_app
+import sys
+from os.path import abspath, dirname, join
+sys.path.insert(0, abspath(join(dirname(__file__), 'local_apps')))
+sys.path.insert(0, abspath(join(dirname(__file__), 'external_apps')))
+sys.path.insert(0, abspath(join(dirname(__file__), 'external_libs')))
+sys.path.insert(0, abspath(dirname(__file__)))
 
-import django
-
-class MainHandler(webapp.RequestHandler):
-    def get(self):
-        self.response.out.write('Hello world!')
-        self.response.out.write(django.__file__)
-
-
-application = webapp.WSGIApplication([('/', MainHandler)],
-                       debug=True)
-def main():
-    run_wsgi_app(application)
-
+from common.appenginepatch.main import main
 
 if __name__ == '__main__':
     main()
