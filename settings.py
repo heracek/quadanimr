@@ -80,6 +80,8 @@ LOGIN_URL = '/account/login/'
 LOGOUT_URL = '/account/logout/'
 LOGIN_REDIRECT_URL = '/'
 
+AUTH_USER_MODULE = 'custom_user.models'
+
 INSTALLED_APPS = (
     # Add jquery support (app is in "common" folder). This automatically
     # adds jquery to your COMBINE_MEDIA['combined-%(LANGUAGE_CODE)s.js']
@@ -91,7 +93,7 @@ INSTALLED_APPS = (
     # Add blueprint CSS (http://blueprintcss.org/)
     'blueprintcss',
 
-    'django.contrib.auth',
+    # 'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.admin',
     'django.contrib.webdesign',
@@ -102,6 +104,8 @@ INSTALLED_APPS = (
     'ragendja',
     
     'myapp',
+    'custom_user',
+    'quadanimr_app',
     
     'registration',
     'mediautils',
