@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block title %}Show photo{% endblock %}
+
+{% block content %}
+<img src="{{ photo.get_photo_img_url }}" />
+{% endblock %}

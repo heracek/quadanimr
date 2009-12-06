@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Upload new photo{% endblock %}
+
+{% block content %}
+  <form enctype="multipart/form-data" action="{% url quadanimr_app.views.upload_photo %}" method="post" accept-charset="utf-8">
+    {{ form.as_p }}
+    <p><input type="submit" value="Upload"></p>
+  </form>
+{% endblock %}

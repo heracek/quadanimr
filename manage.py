@@ -6,6 +6,9 @@ sys.path.insert(0, abspath(join(dirname(__file__), 'external_apps')))
 sys.path.insert(0, abspath(join(dirname(__file__), 'external_libs')))
 sys.path.insert(0, abspath(dirname(__file__)))
 
+import warnings
+warnings.filterwarnings("ignore")
+
 if __name__ == '__main__':
     from common.appenginepatch.aecmd import setup_env
     setup_env(manage_py_env=True)

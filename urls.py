@@ -7,6 +7,8 @@ from django.contrib import admin
 
 admin.autodiscover()
 
+import quadanimr_app.models
+
 handler500 = 'ragendja.views.server_error'
 
 urlpatterns = auth_patterns + patterns('',

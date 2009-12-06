@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Photos list{% endblock %}
+
+{% block content %}
+<ul>
+  {% for thumb in object_list %}
+    <li><a href="{{ thumb.get_show_photo_url }}"><img src="{{ thumb.get_thumb_img_url }}" /></a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

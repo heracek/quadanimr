@@ -20,10 +20,6 @@ class AnimationType(db.Model):
 class PhotoFile(db.Model):
     blob = db.BlobProperty(required=True)
     
-    # @permalink
-    # def get_absolute_url(self):
-    #     return ('myapp.views.download_file', (), {'key': self.key()})
-
     def __unicode__(self):
         return u'PhotoFile: %s' % self.key()
     
@@ -37,10 +33,10 @@ class Photo(db.Model):
     date_added = db.DateTimeProperty(required=True, auto_now_add=True)
     
     # - denormalized fields -
-    anim_version = db.IntegerProperty(required=True)
-    anim_frame_height = db.IntegerProperty(required=True)
-    anim_frame_width = db.IntegerProperty(required=True)
-    anim_json_info = db.TextProperty(required=True)
+    anim_version = db.IntegerProperty()
+    anim_frame_height = db.IntegerProperty()
+    anim_frame_width = db.IntegerProperty()
+    anim_json_info = db.TextProperty()
     
     def set_denormalized_fields(self):
         anim = self.anim_type
@@ -51,14 +47,13 @@ class Photo(db.Model):
         self.anim_json_info = anim.json_info
     # ~ denormalized fields ~
     
+    @permalink
+    def get_photo_img_url(self):
+        return ('quadanimr_app.views.download_photo', (), {'key': self.file.key()})
 
 class ThumbnailFile(db.Model):
     blob = db.BlobProperty(required=True)
     
-    # @permalink
-    # def get_absolute_url(self):
-    #     return ('myapp.views.download_file', (), {'key': self.key()})
-
     def __unicode__(self):
         return u'PhotoFile: %s' % self.key()
     
@@ -68,12 +63,12 @@ class Thumbnail(db.Model):
     photo = db.ReferenceProperty(Photo, required=True)
     
     # - denormalized fields -
-    photo_user = db.ReferenceProperty(User, required=True)
-    photo_anim_frame_time = db.FloatProperty(required=True)
-    photo_date_added = db.DateTimeProperty(required=True)
-    photo_anim_type_thumb_anim = db.ReferenceProperty(AnimationType, required=True)
-    photo_anim_type_version = db.IntegerProperty(required=True)
-    photo_anim_json_info = db.TextProperty(required=True)
+    photo_user = db.ReferenceProperty(User)
+    photo_anim_frame_time = db.FloatProperty()
+    photo_date_added = db.DateTimeProperty()
+    photo_anim_type_thumb_anim = db.ReferenceProperty(AnimationType)
+    photo_anim_type_version = db.IntegerProperty()
+    photo_anim_json_info = db.TextProperty()
     
     def set_denormalized_fields(self):
         photo = self.photo
@@ -86,4 +81,12 @@ class Thumbnail(db.Model):
         self.photo_anim_type_version = thumb_anim.version
         self.photo_anim_json_info = thumb_anim.json_info
     # ~ denormalized fields ~
+    
+    @permalink
+    def get_thumb_img_url(self):
+        return ('quadanimr_app.views.download_thumb', (), {'key': self.file.key()})
+    
+    @permalink
+    def get_show_photo_url(self):
+        return ('quadanimr_app.views.show_photo', (), {'key': self.photo.key()})
     
