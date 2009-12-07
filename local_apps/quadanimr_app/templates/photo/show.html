@@ -3,5 +3,5 @@
 {% block title %}Show photo{% endblock %}
 
 {% block content %}
-<img src="{{ photo.get_photo_img_url }}" />
+<div id="animation" style="background-image: url({{ photo.get_photo_img_url }});background-position: 0 0;width: {{ photo.anim_frame_width }}px;height: {{ photo.anim_frame_height }}px;"> </div>
 {% endblock %}
