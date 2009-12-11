@@ -1,3 +1,4 @@
 *.pyc
 .DS_Store
 .dynamic_media
+_generated_media

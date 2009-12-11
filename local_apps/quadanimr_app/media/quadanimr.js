@@ -4,8 +4,6 @@ function animate_image(animation_div) {
     var x = -Number(background_positions[0].slice(0, -2))
     var y = -Number(background_positions[1].slice(0, -2))
     
-    console.log('x, y:' + x + 'px ' + y + 'px')
-    
     if (x >= 900) {
         x = 0;
         y += 400;
@@ -17,7 +15,6 @@ function animate_image(animation_div) {
         y = 0;
     }
     
-    console.log('background-position', x + 'px ' + y + 'px')
     animation_div.css('background-position', -x + 'px ' + -y + 'px');
 }
 
