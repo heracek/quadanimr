@@ -17,7 +17,7 @@
   <h3>{% block sidebar-thumbs-title %}Photos{% endblock %}</h3>
   {% if object_list %}
     <ul class="thumbs">
-      {% for thumb in object_list %}<li class="thumb{% ifequal photo.key thumb.photo.key %} active{% endifequal %}"><div class="thumb-inner animation-thumb" style="background-image: url({{ thumb.get_thumb_img_url }});background-position: 0 -8px;width: 45px;height: 45px;"><a href="{% url quadanimr_app.views.users_photo username=viewed_username,photo_key=thumb.photo.key %}">&nbsp;</a></div></li>{% endfor %}
+      {% for thumb in object_list %}<li class="thumb{% ifequal photo.key thumb.photo_key %} active{% endifequal %}"><div class="thumb-inner animation-thumb" style="background-image: url({{ thumb.get_thumb_img_url }});background-position: 0 -8px;width: 45px;height: 45px;"><a href="{% url quadanimr_app.views.users_photo username=viewed_username,photo_key=thumb.photo_key %}">&nbsp;</a></div></li>{% endfor %}
     </ul>
   {% endif %}
 {% endblock %}

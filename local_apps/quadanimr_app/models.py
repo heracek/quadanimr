@@ -47,9 +47,13 @@ class Photo(db.Model):
         self.anim_json_info = anim.json_info
     # ~ denormalized fields ~
     
+    def file_key(self):
+        return self._file
+    
     @permalink
     def get_photo_img_url(self):
-        return ('quadanimr_app.views.download_photo', (), {'key': self.file.key()})
+        return ('quadanimr_app.views.download_photo', (), {'key': self.file_key()})
+    
 
 class ThumbnailFile(db.Model):
     blob = db.BlobProperty(required=True)
@@ -82,11 +86,13 @@ class Thumbnail(db.Model):
         self.photo_anim_json_info = thumb_anim.json_info
     # ~ denormalized fields ~
     
-    @permalink
-    def get_thumb_img_url(self):
-        return ('quadanimr_app.views.download_thumb', (), {'key': self.file.key()})
+    def file_key(self):
+        return self._file
+    
+    def photo_key(self):
+        return self._photo
     
     @permalink
-    def get_show_photo_url(self):
-        return ('quadanimr_app.views.show_photo', (), {'key': self.photo.key()})
+    def get_thumb_img_url(self):
+        return ('quadanimr_app.views.download_thumb', (), {'key': self.file_key()})
     
