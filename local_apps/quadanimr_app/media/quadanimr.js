@@ -31,14 +31,21 @@ function animate_thumb(animation_div) {
     xy = [[0, 8], [45, 8], [90, 8], [135, 8], [0, 68], [45, 68], [90, 68], [135, 68]][i]
     
     var x = xy[0];
-    var y = -xy[1];
+    var y = xy[1];
     
-    animation_div.css('background-position', x + 'px ' + y + 'px');
+    animation_div.css('background-position', -x + 'px ' + -y + 'px');
 }
 
-function reset_animate_thumb(animation_div) {
-    animation_div[0].i = -1;
-    animate_thumb(animation_div);
+function startMainAnimation(time) {
+    stopMainAnimation();
+    
+    $(document).everyTime(time, "animationTimer", function() {
+        animate_image($("#animation"));
+    });
+}
+
+function stopMainAnimation() {
+    $(document).stopTime("animationTimer");
 }
 
 function setTimerTo(time) {
@@ -54,24 +61,35 @@ function stopThumbAnim() {
 }
 
 function startThumbAnim(frame_time, thumb) {
+    animate_thumb(thumb);
+    
     $(document).everyTime(frame_time, "thumbAnimationTimer", function() {
         animate_thumb(thumb);
     });
 }
 
+function reset_animate_thumb(animation_div) {
+    animation_div[0].i = -1;
+    animate_thumb(animation_div);
+}
 
 $(document).ready(function() {
+    var mainAnimationTime = 350;
+    var thumbAnimationTime = 250;
+    
     if ($("#animation").length != 0) {
-        setTimerTo(150);
+        setTimerTo(mainAnimationTime);
     }
     
     $(".animation-thumb").hover(
         function () {
-            startThumbAnim(150, $(this));
+            stopMainAnimation();
+            startThumbAnim(thumbAnimationTime, $(this));
         }, 
         function () {
             reset_animate_thumb($(this))
             stopThumbAnim();
+            startMainAnimation(mainAnimationTime);
         }
     );
 });

@@ -1,14 +1,4 @@
 
-* {
-    font-family: helvetica;
-/*    color: white;*/
-}
-
-
-body {
-/*    background: #222;*/
-}
-
 h1 {
     font-size: 3em;
     letter-spacing: -0.1em;
@@ -24,8 +14,6 @@ h2 {
 }
 
 #animation {
-    background-image: url(../../qauda-img.jpeg);
-    background-image: url("file:///Users/heracek/Pictures/QuadAnimation/The Prodigy/IMG_4369.JPG");
     background-position: 0 0;
     width: 300px;
     height: 400px;
@@ -33,28 +21,20 @@ h2 {
 }
 
 #animation-w {
-    background-image: url(../../qauda-img.jpeg);
-    background-image: url("file:///Users/heracek/Pictures/QuadAnimation/The Prodigy/IMG_4369.JPG");
     background-position: 0 0;
     width: 400px;
     height: 300px;
     margin-left: 32px;
 }
 
-#main-content {
-/*    background: #aaa;*/
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-}
-
 .thumbs {
     margin: 0;
     padding: 0;
     width: 275px;
-/*    background: #aaa;*/
     
-    -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
 }
 
 .thumb {
@@ -67,13 +47,13 @@ h2 {
 
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
+    border-radius: 10px;
     -moz-box-shadow: 0 1px 2px #000;
     -webkit-box-shadow: 0 1px 2px #000;
-
+    box-shadow: 0 1px 2px #000;
 }
 
 .thumb-inner {
-    background-image: url(../../qauda-img-thumb.jpeg);
     background-position: 0px 0px;
     width: 45px;
     height: 45px;
@@ -82,6 +62,7 @@ h2 {
     
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
+    border-radius: 8px;
 }
 
 .thumb-inner a {
@@ -89,10 +70,10 @@ h2 {
     width: 45px;
     height: 45px;
     text-decoration: none;
-    background-image: url(../img/image-shine.png);
     
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
+    border-radius: 8px;
 }
 
 .thumb:hover,
@@ -101,6 +82,7 @@ h2 {
     border: 3px solid blue;
     -moz-border-radius: 12px;
     -webkit-border-radius: 12px;
+    border-radius: 12px;
 }
 
 a img {

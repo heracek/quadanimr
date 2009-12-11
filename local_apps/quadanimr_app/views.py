@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.utils.simplejson import dumps
 from django.utils.translation import ugettext as _
-from django.views.generic.list_detail import object_detail
+from django.views.generic.list_detail import object_detail, object_list
 from ragendja.dbutils import get_object_or_404
 from ragendja.template import render_to_response
+
+from custom_user.models import User
 
 from forms import PhotoForm
 from models import Photo, PhotoFile, Thumbnail, ThumbnailFile, AnimationType
@@ -67,11 +69,51 @@ def download_photo(request, key):
     return _download_blob(request, key, PhotoFile)
 
 
-def show_photo(request, key):
+def show_public_photo(request, key):
     extra_context = {
         'object_list': Thumbnail.all().order('-photo_date_added'),
+        'viewed_username': 'public',
     }
     return object_detail(request, Photo.all(), key,
-        template_name='photo/show.html',
+        template_name='photo/public-show.html',
         template_object_name='photo',
         extra_context=extra_context)
+
+def users_photo(request, username, photo_key):
+    viewed_user = User.get_user_by_username_or_404(username)
+    photo = get_object_or_404(Photo, photo_key)
+    
+    if photo.user != viewed_user:
+        raise Http404('Object does not exist!')
+    
+    extra_context = {
+        'viewed_user': viewed_user,
+        'photo': photo,
+        'viewed_username': username
+    }
+    
+    return object_list(request,
+        queryset=Thumbnail.all().filter('photo_user', viewed_user).order('-photo_date_added'),
+        template_name='photo/show.html',
+        extra_context=extra_context
+    )
+
+def users_page(request, username):
+    viewed_user = User.get_user_by_username_or_404(username)
+    
+    photo = None
+    fetched_photo_list = Photo.all().filter('user', viewed_user).order('-date_added').fetch(1)
+    if fetched_photo_list:
+        photo = fetched_photo_list[0]
+    
+    extra_context = {
+        'viewed_user': viewed_user,
+        'photo': photo,
+        'viewed_username': username
+    }
+    
+    return object_list(request,
+        queryset=Thumbnail.all().filter('photo_user', viewed_user).order('-photo_date_added'),
+        template_name='photo/show.html',
+        extra_context=extra_context
+    )

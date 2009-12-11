@@ -1,0 +1,9 @@
+{% extends "photo/show.html" %}
+
+{% block sidebar-thumbs-title %}Public photos{% endblock %}
+
+{% block main-content %}
+  {% with photo.user as viewed_user %}
+    {{ block.super }}
+  {% endwith %}
+{% endblock %}

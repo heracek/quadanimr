@@ -6,23 +6,19 @@
     dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
     xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
     lang="{% firstof LANGUAGE_CODE 'en' %}">
-  <head>
-    <title>{% block title %}{% endblock %} - site name</title>
-    {% block css %}
-      <link rel="stylesheet" type="text/css"  media="screen, projection" href="{{ MEDIA_URL }}combined-{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}.css" />
-      <link rel="stylesheet" type="text/css"  media="print" href="{{ MEDIA_URL }}combined-print-{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}.css" />
-      <!--[if IE]>
-        <link rel="stylesheet" type="text/css" media="screen, projection" href="{{ MEDIA_URL }}ie.css">
-      <![endif]-->
-    {% endblock %}
-
-    {% block js %}
-      <script type="text/javascript" src="{{ MEDIA_URL }}combined-{{ LANGUAGE_CODE }}.js"></script>
-    {% endblock %}
-
-    {% block extra-head %}{% endblock %}
-  </head>
-
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>{% block title %}{% endblock %} - site name</title>
+  {% block css %}
+    <link rel="stylesheet" type="text/css"  media="screen, projection" href="{{ MEDIA_URL }}combined-{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}.css" />
+    {% comment %}<link rel="stylesheet" type="text/css"  media="print" href="{{ MEDIA_URL }}combined-print-{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}.css" />{% endcomment %}
+    <!--[if IE]>
+      <link rel="stylesheet" type="text/css" media="screen, projection" href="{{ MEDIA_URL }}ie.css">
+    <![endif]-->
+  {% endblock %}
+  {% block js %}<script type="text/javascript" src="{{ MEDIA_URL }}combined-{{ LANGUAGE_CODE }}.js"></script>{% endblock %}  
+  {% block extra-head %}{% endblock %}
+</head>
 <body>
 <div class="container xshowgrid">
   {% block header %}
@@ -36,7 +32,7 @@
           <a href="{% url registration.views.register %}">Register</a>
         {% endif %}
       </div>
-      <div id="logo"><h1><a href="#">x</a></h1></div>
+      <div id="logo"><h1><a href="/">x</a></h1></div>
     </div>
   {% endblock %}
   
@@ -65,7 +61,6 @@
   </div>
   <div class="clear span-8 last" id="footer">
     &copy; {% now "Y" %} Tomáš Horáček
-  <div id="footer">    
   </div>
 </div>
 </body>
