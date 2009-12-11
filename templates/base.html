@@ -23,41 +23,50 @@
     {% block extra-head %}{% endblock %}
   </head>
 
-  <body>
-    {% block header %}
-    {% endblock %}
-    <div id="content" class="column container">
-      {% block content-header %}
-        {% if error %}<div class="error">{{ error }}</div>{% endif %}
-        {% if info %}<div class="info">{{ info }}</div>{% endif %}
-        {% if messages %}
-          {% for message in messages %}
-            <div class="info">{{ message }}</div>
-          {% endfor %}
+<body>
+<div class="container xshowgrid">
+  {% block header %}
+    <div class="span-8 last" id="header">
+      <div class="header-menu">
+        {% if user.is_authenticated %}
+          Welcome, {{ user.username }}!
+          <a href="{% url django.contrib.auth.views.logout %}">Logout</a>
+        {% else %}
+          <a href="{% url django.contrib.auth.views.login %}">Login</a>
+          <a href="{% url registration.views.register %}">Register</a>
         {% endif %}
-      {% endblock %}
-      {% block content %}
-        <div id="header">
-          <div class="menu">
-            <a href="/"><img src="{{ MEDIA_URL }}global/logo.png" alt="" /></a>
-            <a href="{% url myapp.views.list_people %}">Generic views sample</a> |
-            <a href="/admin/">Admin interface</a> |
-            <a href="http://code.google.com/p/app-engine-patch/">Visit app-engine-patch</a> |
-            <a href="http://code.google.com/p/app-engine-patch/wiki/Documentation">Documentation</a>
-            --
-            {% if user.is_authenticated %}
-              Welcome, {{ user.username }}!
-              <a href="{% url django.contrib.auth.views.logout %}">Logout</a>
-            {% else %}
-              <a href="{% url django.contrib.auth.views.login %}">Login</a>
-              <a href="{% url registration.views.register %}">Register</a>
-            {% endif %}
-          </div>
-        </div>
-      {% endblock %}
+      </div>
+      <div id="logo"><h1><a href="#">quadanimr</a></h1></div>
     </div>
-    <div id="footer">
-      
-    </div>
-  </body>
+  {% endblock %}
+  
+  <div class="clear span-8 last" id="content-header">
+    {% block content-header %}
+      {% if error %}<div class="error">{{ error }}</div>{% endif %}
+      {% if info %}<div class="info">{{ info }}</div>{% endif %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="info">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endblock %}
+  </div>
+  
+  <div class="clear span-8 last" id="content">
+    {% block content %}
+      <div class="span-5" id="main-content">
+        {% block main-content %}&nbsp;{% endblock %}
+      </div>
+      <div class="span-3 last" id="sidebar">
+        {% block sidebar %}
+        {% endblock %}
+      </div>
+    {% endblock %}
+  </div>
+  <div class="clear span-8 last" id="footer">
+    &copy; {% now "Y" %} Tomáš Horáček
+  <div id="footer">    
+  </div>
+</div>
+</body>
 </html>

@@ -2,6 +2,27 @@
 
 {% block title %}Show photo{% endblock %}
 
-{% block content %}
+{% block main-content %}
+<h2>
+  <span class="thumbs">
+    <span class="thumb"><span class="thumb-inner"><a href="#">&nbsp;</a></span></span>
+  </span>
+  heracek
+</h2>
 <div id="animation" style="background-image: url({{ photo.get_photo_img_url }});background-position: 0 0;width: {{ photo.anim_frame_width }}px;height: {{ photo.anim_frame_height }}px;"> </div>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+{% endblock %}
+
+{% block sidebar %}
+  <h3>Images</h3>
+  {% if object_list %}
+    <ul class="thumbs">
+      {% for thumb in object_list %}<li class="thumb"><div class="thumb-inner" style="background-image: url({{ thumb.get_thumb_img_url }});background-position: 0 -8px;width: 45px;height: 45px;"><a href="{{ thumb.get_show_photo_url }}">&nbsp;</a></div></li>{% endfor %}
+    </ul>
+  {% endif %}
+  {% comment %}
+    <li><a href="{{ thumb.get_show_photo_url }}">
+      <div class="animation-thumb" style="background-image: url({{ thumb.get_thumb_img_url }});background-position: 0 -8px;width: 45px;height: 45px;"> </div>
+    </a></li>
+  {% endcomment %}
 {% endblock %}

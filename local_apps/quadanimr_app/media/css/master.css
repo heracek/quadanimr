@@ -1,0 +1,112 @@
+
+* {
+    font-family: helvetica;
+/*    color: white;*/
+}
+
+
+body {
+/*    background: #222;*/
+}
+
+h1 {
+    font-size: 3em;
+    letter-spacing: -0.1em;
+    text-shadow: 0px -1px #aaa;
+}
+
+h2 {
+    margin-bottom: 5px;
+}
+
+.header-menu {
+    float: right;
+}
+
+#animation {
+    background-image: url(../../qauda-img.jpeg);
+    background-image: url("file:///Users/heracek/Pictures/QuadAnimation/The Prodigy/IMG_4369.JPG");
+    background-position: 0 0;
+    width: 300px;
+    height: 400px;
+    margin-left: 82px;
+}
+
+#animation-w {
+    background-image: url(../../qauda-img.jpeg);
+    background-image: url("file:///Users/heracek/Pictures/QuadAnimation/The Prodigy/IMG_4369.JPG");
+    background-position: 0 0;
+    width: 400px;
+    height: 300px;
+    margin-left: 32px;
+}
+
+#main-content {
+/*    background: #aaa;*/
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+}
+
+.thumbs {
+    margin: 0;
+    padding: 0;
+    width: 275px;
+/*    background: #aaa;*/
+    
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+}
+
+.thumb {
+    overflow: hidden;
+    list-style: none;
+    display: inline-block;
+    margin: 4px;
+    padding: 0;
+    border: 1px solid #000;
+
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-box-shadow: 0 1px 2px #000;
+    -webkit-box-shadow: 0 1px 2px #000;
+
+}
+
+.thumb-inner {
+    background-image: url(../../qauda-img-thumb.jpeg);
+    background-position: 0px 0px;
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+    display: inline-block;
+    
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+
+.thumb-inner a {
+    display: block;
+    width: 45px;
+    height: 45px;
+    text-decoration: none;
+    background-image: url(../img/image-shine.png);
+    
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+
+.thumb:hover,
+.thumb.active {
+    margin: 2px;
+    border: 3px solid blue;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+}
+
+a img {
+    border: none;
+}
+
+#footer {
+    text-align: center;
+}

@@ -4,7 +4,7 @@ from ragendja.settings_pre import *
 # Increase this when you update your media on the production site, so users
 # don't have to refresh their cache. By setting this your MEDIA_URL
 # automatically becomes /media/MEDIA_VERSION/
-MEDIA_VERSION = 2
+MEDIA_VERSION = 3
 
 # By hosting media on a different domain we can get a speedup (more parallel
 # browser connections).
@@ -19,7 +19,7 @@ COMBINE_MEDIA = {
         '.site_data.js',
     ),
     'combined-%(LANGUAGE_DIR)s.css': (
-        'global/look.css',
+        # 'global/look.css',
     ),
 }
 
@@ -91,7 +91,7 @@ INSTALLED_APPS = (
     'jquery',
 
     # Add blueprint CSS (http://blueprintcss.org/)
-    'blueprintcss',
+    # 'blueprintcss',
 
     # 'django.contrib.auth',
     'django.contrib.sessions',

@@ -2,12 +2,16 @@
 
 {% block title %}Photos list{% endblock %}
 
-{% block content %}
-<ul>
-  {% for thumb in object_list %}
+{% block sidebar %}
+  <h3>Images</h3>
+  {% if object_list %}
+    <ul class="thumbs">
+      {% for thumb in object_list %}<li class="thumb"><div class="thumb-inner" style="background-image: url({{ thumb.get_thumb_img_url }});background-position: 0 -8px;width: 45px;height: 45px;"><a href="{{ thumb.get_show_photo_url }}">&nbsp;</a></div></li>{% endfor %}
+    </ul>
+  {% endif %}
+  {% comment %}
     <li><a href="{{ thumb.get_show_photo_url }}">
       <div class="animation-thumb" style="background-image: url({{ thumb.get_thumb_img_url }});background-position: 0 -8px;width: 45px;height: 45px;"> </div>
     </a></li>
-  {% endfor %}
-</ul>
+  {% endcomment %}
 {% endblock %}

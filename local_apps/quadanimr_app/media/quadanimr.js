@@ -1,21 +1,24 @@
 function animate_image(animation_div) {
     var background_positions = animation_div.css('background-position').split(' ');
     
-    var x = Number(background_positions[0].slice(0, -2))
-    var y = Number(background_positions[1].slice(0, -2))
+    var x = -Number(background_positions[0].slice(0, -2))
+    var y = -Number(background_positions[1].slice(0, -2))
+    
+    console.log('x, y:' + x + 'px ' + y + 'px')
     
     if (x >= 900) {
         x = 0;
-        y -= 400;
+        y += 400;
     } else {
         x += 300;
     }
     
-    if (y <= -800) {
+    if (y >= 800) {
         y = 0;
     }
     
-    animation_div.css('background-position', x + 'px ' + y + 'px');
+    console.log('background-position', x + 'px ' + y + 'px')
+    animation_div.css('background-position', -x + 'px ' + -y + 'px');
 }
 
 function animate_thumb(animation_div) {

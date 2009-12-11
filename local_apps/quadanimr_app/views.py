@@ -68,6 +68,10 @@ def download_photo(request, key):
 
 
 def show_photo(request, key):
+    extra_context = {
+        'object_list': Thumbnail.all().order('-photo_date_added'),
+    }
     return object_detail(request, Photo.all(), key,
         template_name='photo/show.html',
-        template_object_name='photo')
+        template_object_name='photo',
+        extra_context=extra_context)
